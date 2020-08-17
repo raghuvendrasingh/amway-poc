@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "projects": {
+    "amway-poc": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/amway-poc",
+      "sourceRoot": "apps/amway-poc/src",
+      "prefix": "hybris-amway",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/amway-poc",
+            "index": "apps/amway-poc/src/index.html",
+            "main": "apps/amway-poc/src/main.ts",
+            "polyfills": "apps/amway-poc/src/polyfills.ts",
+            "tsConfig": "apps/amway-poc/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/amway-poc/src/favicon.ico",
+              "apps/amway-poc/src/assets"
+            ],
+            "styles": ["apps/amway-poc/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/amway-poc/src/environments/environment.ts",
+                  "with": "apps/amway-poc/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "amway-poc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "amway-poc:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "amway-poc:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/amway-poc/tsconfig.app.json",
+              "apps/amway-poc/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/amway-poc/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/amway-poc/jest.config.js",
+            "tsConfig": "apps/amway-poc/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/amway-poc/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "amway-poc-e2e": {
+      "root": "apps/amway-poc-e2e",
+      "sourceRoot": "apps/amway-poc-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/amway-poc-e2e/cypress.json",
+            "tsConfig": "apps/amway-poc-e2e/tsconfig.e2e.json",
+            "devServerTarget": "amway-poc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "amway-poc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/amway-poc-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/amway-poc-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "amway-poc"
+}

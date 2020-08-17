@@ -1,0 +1,31 @@
+<section class="container-fluid">
+  <section class="row">
+    <section class="col-sm-8">
+      <form>
+        <div class="form-group">
+          <label>User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="LoginUser()">
+          Submit
+        </button>
+      </form>
+    </section>
+  </section>
+</section>
