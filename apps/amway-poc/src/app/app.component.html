@@ -1,11 +1,17 @@
-<header class="flex">
-  <img
-    alt="Nx logo"
-    width="75"
-    src="https://nx.dev/assets/images/nx-logo-white.svg"
-  />
-  <h1>Welcome to {{ title }}!</h1>
-</header>
-<br />
-<br />
-<poc-login></poc-login>
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand">{{ title }}</a>
+  <ul class="nav nav-pills">
+    <li>
+      <a class="nav-item nav-link" [routerLink]="['/login']"> Login </a>
+    </li>
+    <li>
+      <a class="nav-item nav-link" [routerLink]="['/globaluser']">
+        Dashboard
+      </a>
+    </li>
+    <!--  -->
+  </ul>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
