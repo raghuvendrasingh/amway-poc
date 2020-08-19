@@ -1,7 +1,7 @@
 <section class="container-fluid">
   <section class="row">
     <section class="col-sm-8">
-      <form>
+      <form (submit)="LoginUser($event)">
         <div class="form-group">
           <label>User Name</label>
           <input
@@ -22,7 +22,7 @@
             placeholder="Password"
           />
         </div>
-        <button type="submit" class="btn btn-primary" (click)="LoginUser()">
+        <button type="submit" class="btn btn-primary">
           Submit
         </button>
       </form>

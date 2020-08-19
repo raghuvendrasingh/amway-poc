@@ -9,6 +9,16 @@
         Dashboard
       </a>
     </li>
+    <li>
+      <a
+        *ngIf="isLoggedIn | async"
+        class="nav-item nav-link"
+        [routerLink]="['/logout']"
+        (click)="logout()"
+      >
+        Logout
+      </a>
+    </li>
     <!--  -->
   </ul>
 </nav>

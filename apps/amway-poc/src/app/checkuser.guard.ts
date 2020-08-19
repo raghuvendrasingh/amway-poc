@@ -7,12 +7,13 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CheckuserGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,10 +22,11 @@ export class CheckuserGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (+localStorage.getItem('isLoggedIn')) {
+    if (this.auth.isLoggedIn) {
       return true;
     } else {
       alert('user not authenticated');
+      this.router.navigate(['/login']);
       return false;
     }
   }
